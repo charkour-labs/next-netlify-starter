@@ -18,7 +18,7 @@ export default function Other() {
       );
     });
     console.log({ res });
-  });
+  }, []);
 
   return (
     <div className="container">
