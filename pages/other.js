@@ -21,7 +21,7 @@ export default function Other() {
       );
     });
     console.log({ res });
-  }, [router]);
+  }, [router.reload]);
 
   return (
     <div className="container">
