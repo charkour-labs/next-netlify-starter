@@ -3,7 +3,7 @@ import Header from "@components/Header";
 import Footer from "@components/Footer";
 import Link from "next/link";
 import React from "react";
-import useRouter from "next/router";
+import { useRouter } from "next/router";
 
 export default function Other() {
   const router = useRouter();
