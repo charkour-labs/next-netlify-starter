@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 
 export default function Other() {
   const router = useRouter();
-  React.useEffect(() => {
-    const res = (async () => await fetch("/api/group"))().then((value) => {
+  const signIn = async () => {
+    await fetch("/api/group").then((value) => {
       console.log(
         { value },
         value.body
@@ -20,8 +20,7 @@ export default function Other() {
           })
       );
     });
-    console.log({ res });
-  }, [router.reload]);
+  };
 
   return (
     <div className="container">
@@ -38,6 +37,7 @@ export default function Other() {
           </Link>
           Other
         </p>
+        <button onClick={signIn}>Sign in</button>
       </main>
 
       <Footer />
