@@ -3,7 +3,8 @@ import Header from '@components/Header'
 import Footer from '@components/Footer'
 import Link from 'next/link';
 
-export default function Home() {
+
+export default function Other() {
   return (
     <div className="container">
       <Head>
@@ -12,10 +13,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="Home!" />
+        <Header title="Other!" />
         <p className="description">
-          Home
-          <Link href="/">Go to /</Link>
+	<Link href="/">Go to /</Link>
+          Other
         </p>
       </main>
 
