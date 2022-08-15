@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
     const { pathname, searchParams } = request.nextUrl;
-    const isBGroup = searchParams.get('group') === 'B';
+    const isBGroup = request.cookies.get('group') === 'B' || searchParams.get('group') === 'B';
     if (isBGroup && pathname === '/') {
         return NextResponse.rewrite(new URL('/other', request.url));
     } else if (pathname === '/other') {
