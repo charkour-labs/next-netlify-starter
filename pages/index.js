@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
-import Link from 'next/link';
+import Head from "next/head";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,11 +15,15 @@ export default function Home() {
         <Header title="Home!" />
         <p className="description">
           Home
-          <Link href="/">Go to /</Link>
+          <Link href="/" passHref={true}>
+            <a aria-label="home">
+              To home
+            </a>
+          </Link>
         </p>
       </main>
 
       <Footer />
     </div>
-  )
+  );
 }
