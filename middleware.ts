@@ -3,9 +3,9 @@ import { NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
     const { pathname, searchParams } = request.nextUrl;
-    const cookie = request.cookies.get('group');
+    const cookie = request.cookies.get('customer_group');
     console.log({ pathname: pathname.toString(), searchParams: searchParams.toString(), cookie })
-    const isBGroup = cookie === 'B' || searchParams.get('group') === 'B';
+    const isBGroup = cookie === 'other' || searchParams.get('group') === 'other';
     if (isBGroup && pathname === '/') {
 	console.log('rewrite')
         return NextResponse.rewrite(new URL('/other', request.url));
