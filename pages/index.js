@@ -1,9 +1,25 @@
 import Head from "next/head";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const signIn = async () => {
+    await fetch("/api/sign-in").then((value) => {
+      console.log(
+        { value },
+        value.body
+          .getReader()
+          .read()
+          .then((stream) => {
+            console.log({ stream: new TextDecoder().decode(stream.value) });
+            router.reload();
+          })
+      );
+    });
+  };
+
   return (
     <div className="container">
       <Head>
@@ -13,14 +29,8 @@ export default function Home() {
 
       <main>
         <Header title="Home!" />
-        <p className="description">
-          Home
-          <Link href="/other" passHref={true}>
-            <a aria-label="home">
-              To other
-            </a>
-          </Link>
-        </p>
+        <p className="description">Home</p>
+        <button onClick={signIn}>Sign in</button>
       </main>
 
       <Footer />

@@ -6,9 +6,24 @@ import React from "react";
 import { useRouter } from "next/router";
 
 export default function Other() {
-  const router = useRouter();
+  const router = useRouter()
   const signIn = async () => {
-    await fetch("/api/group").then((value) => {
+    await fetch("/api/sign-in").then((value) => {
+      console.log(
+        { value },
+        value.body
+          .getReader()
+          .read()
+          .then((stream) => {
+            console.log({ stream: new TextDecoder().decode(stream.value) });
+            router.reload();
+          })
+      );
+    });
+  };
+
+  const signOut = async () => {
+    await fetch("/api/sign-out").then((value) => {
       console.log(
         { value },
         value.body
@@ -38,6 +53,8 @@ export default function Other() {
           Other
         </p>
         <button onClick={signIn}>Sign in</button>
+        <br />
+        <button onClick={signOut}>Sign out</button>
       </main>
 
       <Footer />
