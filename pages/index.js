@@ -15,9 +15,9 @@ export default function Home() {
         <Header title="Home!" />
         <p className="description">
           Home
-          <Link href="/" passHref={true}>
+          <Link href="/other" passHref={true}>
             <a aria-label="home">
-              To home
+              To other
             </a>
           </Link>
         </p>
