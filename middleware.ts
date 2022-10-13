@@ -16,8 +16,7 @@ export function middleware(request: NextRequest) {
     locale: request.nextUrl.locale.toString(),
     defaultLocale: request.nextUrl.defaultLocale?.toString(),
     domainLocale: request.nextUrl.domainLocale?.toString(),
-    otherUrl: otherUrl.toString(),
-    rewrite: NextResponse.rewrite.toString(),
+    
   });
 
   if (isBGroup && ["/", "/en-US"].includes(pathname.toString())) {
@@ -25,7 +24,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(otherUrl);
   } else if (pathname === "/other") {
     console.log("404");
-    return NextResponse.rewrite(new URL("/404", request.url));
+    // return NextResponse.rewrite(new URL("/404", request.url));
   }
   console.log("else");
 
