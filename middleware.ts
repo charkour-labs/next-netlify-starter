@@ -6,6 +6,7 @@ export function middleware(request: NextRequest) {
   const cookie = request.cookies.get("customer_group");
   const isBGroup = cookie === "other" || searchParams.get("group") === "other";
   console.log({
+    url: request.url,
     pathname: pathname.toString(),
     searchParams: searchParams.toString(),
     cookie,
