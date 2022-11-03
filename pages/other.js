@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function Other() {
   const router = useRouter()
   const signIn = async () => {
-    await fetch("/api/sign-in").then((value) => {
+    await fetch("/api/sign-in", { method: 'PUT' }).then((value) => {
       console.log(
         { value },
         value.body
@@ -23,7 +23,7 @@ export default function Other() {
   };
 
   const signOut = async () => {
-    await fetch("/api/sign-out").then((value) => {
+    await fetch("/api/sign-out", { method: 'PUT' }).then((value) => {
       console.log(
         { value },
         value.body

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
   const signIn = async () => {
-    await fetch("/api/sign-in").then((value) => {
+    await fetch("/api/sign-in", { method: 'PUT' }).then((value) => {
       console.log(
         { value },
         value.body
