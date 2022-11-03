@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(otherUrl);
   } else if (pathname === "/other") {
     console.log("404");
-    // return NextResponse.rewrite(new URL("/404", request.url));
+    return NextResponse.rewrite(new URL("/404", request.url));
   }
   console.log("else");
 
@@ -32,5 +32,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/other", "/en-US"],
+  matcher: ["/", "/other"],
 };
