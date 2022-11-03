@@ -6,20 +6,21 @@ export function middleware(request: NextRequest) {
   const cookie = request.cookies.get("customer_group");
   const isBGroup = cookie === "other" || searchParams.get("group") === "other";
   const otherUrl = new URL("/other", request.url);
+  const pathnameMatch = pathname === '/';
   console.log({
     url: request.url,
     pathname: pathname.toString(),
     searchParams: searchParams.toString(),
     cookie,
     isBGroup,
-    pathnameMatch: ["/", "/en-US"].includes(pathname.toString()),
+    pathnameMatch,
     locale: request.nextUrl.locale.toString(),
     defaultLocale: request.nextUrl.defaultLocale?.toString(),
     domainLocale: request.nextUrl.domainLocale?.toString(),
     
   });
 
-  if (isBGroup && ["/", "/en-US"].includes(pathname.toString())) {
+  if (isBGroup && pathnameMatch) {
     console.log("rewrite");
     return NextResponse.rewrite(otherUrl);
   } else if (pathname === "/other") {
