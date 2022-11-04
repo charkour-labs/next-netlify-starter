@@ -1,8 +1,10 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { MiddlewareRequest } from '@netlify/next';
 
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+  const middlewareRequest = new MiddlewareRequest(request)
   const cookie = request.cookies.get("customer_group");
   const isBGroup = cookie === "other" || searchParams.get("group") === "other";
   const otherUrl = new URL("/other", request.url);
@@ -22,10 +24,11 @@ export function middleware(request: NextRequest) {
 
   if (isBGroup && pathnameMatch) {
     console.log("rewrite");
-    return NextResponse.rewrite(otherUrl);
+    //return NextResponse.rewrite(otherUrl);
+    return middlewareRequest.rewrite(otherUrl);
   } else if (pathname === "/other") {
     console.log("404");
-    return NextResponse.rewrite(new URL("/404", request.url));
+    //return NextResponse.rewrite(new URL("/404", request.url));
   }
   console.log("else");
 
