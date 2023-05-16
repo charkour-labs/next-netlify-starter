@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
   const middlewareRequest = new MiddlewareRequest(request)
   const cookie = request.cookies.get("customer_group");
-  const isBGroup = cookie === "other" || searchParams.get("group") === "other";
+  const isBGroup = cookie.value === "other" || searchParams.get("group") === "other";
   const otherUrl = new URL("/other", request.url);
   const pathnameMatch = pathname === '/';
   console.log({
@@ -36,5 +36,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/other"],
+  matcher: [],
 };
